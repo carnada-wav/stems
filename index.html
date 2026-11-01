@@ -38,7 +38,7 @@ footer b{color:var(--lime-dim)}
 </header>
 <main><div id="list" class="grid" aria-live="polite"></div></main>
 <footer>
-<p>Las descargas están en un repositorio privado: hace falta iniciar sesión en GitHub con una cuenta invitada.</p>
+<p>La descarga requiere haber iniciado sesión en GitHub con una cuenta con acceso.</p>
 <p><b>&gt;</b> Carnada</p>
 </footer>
 </div>
@@ -70,11 +70,11 @@ if(!songs.length){list.innerHTML='<div class="glass empty">Todavía no hay canci
 songs.sort(function(a,b){return b.date.localeCompare(a.date)}).forEach(function(s){
 var a=document.createElement('article');a.className='glass card';
 var t=[s.bpm+' BPM',s.stems+' stems'].concat(s.extras?['+'+s.extras+' extra']:[],[s.format,s.level]);
-a.innerHTML=ICON+'<div><h2></h2><div class="by"></div><div class="tags"></div><a class="btn" target="_blank" rel="noopener">Descargar stems</a></div>';
+a.innerHTML=ICON+'<div><h2></h2><div class="by"></div><div class="tags"></div><a class="btn" download>Descargar stems</a></div>';
 a.querySelector('h2').textContent=s.title;
 a.querySelector('.by').textContent=s.artist+' · '+s.date;
 a.querySelector('.tags').innerHTML=t.map(function(x){var e=document.createElement('span');e.className='tag';e.textContent=x;return e.outerHTML}).join('');
-a.querySelector('.btn').href=s.release;
+a.querySelector('.btn').href=s.download;
 list.appendChild(a);
 });
 }).catch(function(){document.getElementById('list').innerHTML='<div class="glass empty">No se pudo cargar la lista.</div>'});
