@@ -5,14 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Carnada · Stems</title>
 <meta name="description" content="Biblioteca de stems para mastering de Carnada.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Carnada · Stems">
+<meta property="og:description" content="Biblioteca de stems para mastering de Carnada.">
+<meta name="theme-color" content="#070a04">
 <style>
 :root{--bg:#070a04;--lime:#c0ff00;--lime-dim:#6e9600;--text:#eaf5d0;--muted:#9db07a;--glass:rgba(255,255,255,.07);--glass-b:rgba(255,255,255,.22)}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{color-scheme:dark}
 body{margin:0;min-height:100vh;color:var(--text);background:var(--bg);font:16px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background-image:radial-gradient(520px 420px at 12% 8%,rgba(192,255,0,.40),transparent 70%),radial-gradient(560px 460px at 92% 92%,rgba(120,200,0,.32),transparent 70%),radial-gradient(420px 320px at 85% 10%,rgba(60,120,0,.35),transparent 70%);background-attachment:fixed}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .wrap{max-width:960px;margin:0 auto;padding:48px 16px 72px}
 header{text-align:center;margin-bottom:40px}
-pre.logo{margin:0 auto 12px;display:block;width:max-content;max-width:100%;overflow:hidden;color:var(--lime);font-weight:700;line-height:1.05;font-size:clamp(5px,1.35vw,11px);text-shadow:0 0 10px rgba(192,255,0,.55);white-space:pre;text-align:left;min-height:17em}
+pre.logo{margin:0 auto 12px;display:block;width:max-content;max-width:100%;overflow:hidden;color:var(--lime);font-weight:700;line-height:1.05;font-size:min(11px,calc((100vw - 32px)/52));text-shadow:0 0 10px rgba(192,255,0,.55);white-space:pre;text-align:left;min-height:17em}
 pre.logo.on{animation:glow 2.6s ease-out}
 header p{margin:0;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-size:13px;opacity:0;animation:up .8s ease 1.3s forwards}
 @keyframes glow{0%{text-shadow:0 0 26px #c0ff00,0 0 70px rgba(192,255,0,.85)}100%{text-shadow:0 0 10px rgba(192,255,0,.55)}}
@@ -26,10 +32,9 @@ header p{margin:0;color:var(--muted);letter-spacing:.12em;text-transform:upperca
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .tag{font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid rgba(192,255,0,.4);color:var(--lime);background:rgba(192,255,0,.08)}
 .btn{display:inline-block;text-decoration:none;font:inherit;font-weight:700;font-size:14px;color:#0b1000;background:var(--lime);padding:9px 18px;border:0;border-radius:14px;cursor:pointer;box-shadow:0 0 18px rgba(192,255,0,.35);transition:transform .15s,box-shadow .15s}
-.btn:hover,.btn:focus-visible{transform:translateY(-1px);box-shadow:0 0 28px rgba(192,255,0,.6);outline:none}
+.btn:hover,.btn:focus-visible{transform:translateY(-1px);box-shadow:0 0 28px rgba(192,255,0,.6);outline:2px solid var(--text);outline-offset:2px}
 .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--glass-b);box-shadow:none}
 .mask{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.mask[hidden]{display:none}
 .box{width:100%;max-width:380px;padding:26px}
 .box h3{margin:0 0 4px;font-size:20px;color:var(--lime)}
 .box p{margin:0 0 16px;color:var(--muted);font-size:13px}
@@ -40,29 +45,33 @@ header p{margin:0;color:var(--muted);letter-spacing:.12em;text-transform:upperca
 .empty{padding:28px;text-align:center;color:var(--muted)}
 footer{margin-top:40px;text-align:center;color:var(--muted);font-size:12px;opacity:0;animation:up .8s ease 2s forwards}
 footer b{color:var(--lime-dim)}
-@media (max-width:520px){.card{flex-direction:column;text-align:center}.tags{justify-content:center}}
+footer p{margin:0 0 6px}
+@media (max-width:520px){.card{flex-direction:column;text-align:center}.tags{justify-content:center}.mask{align-items:flex-start;padding-top:14vh}}
 @media (prefers-reduced-motion:reduce){.card,header p,footer{opacity:1;animation:none}pre.logo.on{animation:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
-<pre class="logo" id="logo" aria-label="CARNADA"></pre>
+<h1 class="sr">Carnada · Stems</h1>
+<pre class="logo" id="logo" role="img" aria-label="CARNADA"></pre>
 <p>Biblioteca de stems · mastering</p>
 </header>
-<main><div id="list" class="grid" aria-live="polite"></div></main>
+<main><div id="list" class="grid" aria-live="polite"></div>
+<noscript><div class="glass empty">Activa JavaScript para ver la biblioteca.</div></noscript></main>
 <footer>
 <p>La descarga requiere contraseña y una cuenta de GitHub con acceso.</p>
+<p>¿Te da error 404? Avisa a Alex por WhatsApp.</p>
 <p><b>&gt;</b> Carnada</p>
 </footer>
 </div>
 <div class="mask" id="mask" hidden>
-<form class="glass box" id="form" autocomplete="off">
-<h3>Contraseña</h3>
-<p>Introduce la contraseña para descargar los stems.</p>
+<form class="glass box" id="form" role="dialog" aria-modal="true" aria-labelledby="mt" aria-describedby="mp" autocomplete="off">
+<h3 id="mt">Contraseña</h3>
+<p id="mp">Introduce la contraseña para descargar los stems.</p>
 <input id="pw" type="password" placeholder="Contraseña" aria-label="Contraseña" autocomplete="off">
 <div id="err" role="alert"></div>
-<div class="row"><button type="button" class="btn ghost" id="cancel">Cancelar</button><button type="submit" class="btn">Descargar</button></div>
+<div class="row"><button type="button" class="btn ghost" id="cancel">Cancelar</button><button type="submit" class="btn" id="go">Descargar</button></div>
 </form>
 </div>
 <script>
@@ -102,21 +111,36 @@ if(!done){requestAnimationFrame(frame)}else{lg.textContent=FULL;lg.style.width='
 lg.textContent=LOGO.map(function(r){return r.replace(/\S/g,' ')}).join('\n');
 requestAnimationFrame(frame);
 }
-var ICON='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="g1" cx="25%" cy="25%" r="60%"><stop offset="0" stop-color="#c0ff00" stop-opacity=".75"/><stop offset="1" stop-color="#c0ff00" stop-opacity="0"/></radialGradient><radialGradient id="g2" cx="80%" cy="85%" r="55%"><stop offset="0" stop-color="#78c800" stop-opacity=".6"/><stop offset="1" stop-color="#78c800" stop-opacity="0"/></radialGradient><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity=".08"/></linearGradient></defs><rect x="4" y="4" width="92" height="92" rx="22" fill="#0b1206"/><rect x="4" y="4" width="92" height="92" rx="22" fill="url(#g1)"/><rect x="4" y="4" width="92" height="92" rx="22" fill="url(#g2)"/><path d="M22 20h42l14 14v46a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4z" fill="url(#gl)" stroke="#fff" stroke-opacity=".5" stroke-width=".8"/><rect x="36" y="20" width="28" height="19" rx="2.5" fill="#fff" fill-opacity=".45" stroke="#fff" stroke-opacity=".6" stroke-width=".6"/><rect x="54" y="23" width="7" height="13" rx="1.5" fill="#000" fill-opacity=".6"/><rect x="28" y="50" width="46" height="26" rx="3" fill="#050802" fill-opacity=".85" stroke="#c0ff00" stroke-opacity=".6" stroke-width=".8"/><text x="51" y="68" text-anchor="middle" font-family="monospace" font-weight="700" font-size="9" fill="#c0ff00">CARNADA</text><rect x="68" y="72" width="6" height="6" rx="1" fill="#c0ff00" fill-opacity=".7"/></svg>';
+var ICON='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="g1" cx="25%" cy="25%" r="60%"><stop offset="0" stop-color="#c0ff00" stop-opacity=".75"/><stop offset="1" stop-color="#c0ff00" stop-opacity="0"/></radialGradient><radialGradient id="g2" cx="80%" cy="85%" r="55%"><stop offset="0" stop-color="#78c800" stop-opacity=".6"/><stop offset="1" stop-color="#78c800" stop-opacity="0"/></radialGradient><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity=".08"/></linearGradient></defs><rect x="4" y="4" width="92" height="92" rx="22" fill="#0b1206"/><rect x="4" y="4" width="92" height="92" rx="22" fill="url(#g1)"/><rect x="4" y="4" width="92" height="92" rx="22" fill="url(#g2)"/><path d="M22 20h42l14 14v46a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4z" fill="url(#gl)" stroke="#fff" stroke-opacity=".5" stroke-width=".8"/><rect x="36" y="20" width="28" height="19" rx="2.5" fill="#fff" fill-opacity=".45" stroke="#fff" stroke-opacity=".6" stroke-width=".6"/><rect x="54" y="23" width="7" height="13" rx="1.5" fill="#000" fill-opacity=".6"/><rect x="28" y="50" width="46" height="26" rx="3" fill="#050802" fill-opacity=".85" stroke="#c0ff00" stroke-opacity=".6" stroke-width=".8"/><text x="51" y="68" text-anchor="middle" font-family="monospace" font-weight="700" font-size="9" fill="#c0ff00">CARNADA</text><rect x="68" y="72" width="6" height="6" rx="1" fill="#c0ff00" fill-opacity=".7"/></svg>';
 var fav=document.createElement('link');fav.rel='icon';fav.href='data:image/svg+xml,'+encodeURIComponent(ICON);document.head.appendChild(fav);
 var HASH='b00df52b1434627f07336a8c54c0221e78512a43a056662f9d3ca07387e72b21';
-var cur='';
-var mask=document.getElementById('mask'),pw=document.getElementById('pw'),err=document.getElementById('err');
+var cur='',curSize='',opener=null;
+var mask=document.getElementById('mask'),pw=document.getElementById('pw'),err=document.getElementById('err'),mt=document.getElementById('mt'),mp=document.getElementById('mp'),go=document.getElementById('go'),cancel=document.getElementById('cancel');
 function sha(s){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')})}
-function openM(url){cur=url;pw.value='';err.textContent='';mask.hidden=false;pw.focus()}
-function closeM(){mask.hidden=true;cur=''}
-document.getElementById('cancel').onclick=closeM;
+function setMode(ok){
+mt.textContent=ok?'Descarga iniciada':'Contraseña';
+mp.textContent=ok?((curSize?'Pesa '+curSize+' y ':'Es un archivo grande y ')+'puede tardar unos minutos. Si ves un error 404, avisa a Alex por WhatsApp.'):'Introduce la contraseña para descargar los stems.';
+pw.hidden=ok;err.hidden=ok;go.hidden=ok;
+cancel.textContent=ok?'Cerrar':'Cancelar';
+}
+function openM(url,size){opener=document.activeElement;cur=url;curSize=size||'';pw.value='';err.textContent='';setMode(false);mask.hidden=false;pw.focus()}
+function closeM(){mask.hidden=true;cur='';if(opener&&opener.focus){opener.focus()}}
+cancel.onclick=closeM;
 mask.addEventListener('click',function(e){if(e.target===mask)closeM()});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeM()});
+document.addEventListener('keydown',function(e){
+if(mask.hidden)return;
+if(e.key==='Escape'){closeM();return}
+if(e.key!=='Tab')return;
+var f=Array.prototype.filter.call(mask.querySelectorAll('input,button'),function(x){return !x.hidden&&x.offsetParent!==null});
+if(!f.length)return;
+var first=f[0],last=f[f.length-1];
+if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+});
 document.getElementById('form').addEventListener('submit',function(e){
 e.preventDefault();
 sha(pw.value.trim()).then(function(h){
-if(h===HASH){var u=cur;closeM();var l=document.createElement('a');l.href=u;l.download='';document.body.appendChild(l);l.click();l.remove()}
+if(h===HASH){var l=document.createElement('a');l.href=cur;l.download='';document.body.appendChild(l);l.click();l.remove();setMode(true);cancel.focus()}
 else{err.textContent='Contraseña incorrecta.';pw.select()}
 });
 });
@@ -125,12 +149,12 @@ var list=document.getElementById('list');
 if(!songs.length){list.innerHTML='<div class="glass empty">Todavía no hay canciones.</div>';return}
 songs.sort(function(a,b){return b.date.localeCompare(a.date)}).forEach(function(s){
 var a=document.createElement('article');a.className='glass card';
-var t=[s.bpm+' BPM',s.stems+' stems'].concat(s.extras?['+'+s.extras+' extra']:[],[s.format,s.level]);
-a.innerHTML=ICON+'<div><h2></h2><div class="by"></div><div class="tags"></div><a class="btn" href="#">Descargar stems</a></div>';
+var t=[s.bpm+' BPM',s.stems+' stems'].concat(s.extras?['+'+s.extras+' extra']:[],[s.format,s.level],s.size?['ZIP '+s.size]:[]);
+a.innerHTML=ICON+'<div><h2></h2><div class="by"></div><div class="tags"></div><button type="button" class="btn">Descargar stems</button></div>';
 a.querySelector('h2').textContent=s.title;
 a.querySelector('.by').textContent=s.artist+' · '+s.date;
 a.querySelector('.tags').innerHTML=t.map(function(x){var e=document.createElement('span');e.className='tag';e.textContent=x;return e.outerHTML}).join('');
-a.querySelector('.btn').addEventListener('click',function(e){e.preventDefault();openM(s.download)});
+a.querySelector('.btn').addEventListener('click',function(){openM(s.download,s.size)});
 list.appendChild(a);
 });
 }).catch(function(){document.getElementById('list').innerHTML='<div class="glass empty">No se pudo cargar la lista.</div>'});
